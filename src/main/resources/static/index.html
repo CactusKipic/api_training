@@ -43,8 +43,8 @@
                     <div class="mb-3">
                         <label for="userSex" class="form-label">Vous êtes:</label>
                         <select id="userSex" name="userSex" class="form-select" aria-label="Sex selection">
-                            <option value="M">une Femme</option>
-                            <option value="F">un Homme</option>
+                            <option value="F">une Femme</option>
+                            <option value="M">un Homme</option>
                             <option value="O">Autre</option>
                         </select>
                     </div>
@@ -53,8 +53,8 @@
                         <label for="userSexPref" class="form-label">Vous recherchez:</label>
                         <select id="userSexPref" name="userSexPref" class="form-select"
                                 aria-label="Sex Pref. selection">
-                            <option value="M">une Femme</option>
-                            <option value="F">un Homme</option>
+                            <option value="F">une Femme</option>
+                            <option value="M">un Homme</option>
                             <option value="O">Autre</option>
                         </select>
                     </div>
@@ -82,7 +82,8 @@
         xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
         xhr.onreadystatechange = () => {
         document.location.href = "/home.html?name=" + encodeURIComponent(formData.userName) + "&country=" + encodeURIComponent(formData.userCountry);
-};
+        };
+        xhr.send(JSON.stringify(formData));
     }
 
     document.getElementById('inscription').onsubmit = function() {
