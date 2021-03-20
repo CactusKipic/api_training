@@ -1,7 +1,6 @@
 package fr.esiea.ex4A.mockmeet.tools;
 
 import fr.esiea.ex4A.mockmeet.json.Match;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
