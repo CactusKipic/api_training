@@ -56,9 +56,11 @@
     function loadMatches() {
         var userName = getParameterByName('name');
         var userCountry = getParameterByName('country');
+        var sex = getParameterByName('sex');
+        var sexPref = getParameterByName('sexPref');
 
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/api/matches?userName=' + encodeURIComponent(userName) + "&userCountry=" + encodeURIComponent(userCountry), true);
+        xhr.open('GET', '/api/matches?userName=' + encodeURIComponent(userName) + "&userCountry=" + encodeURIComponent(userCountry) + "&sex="+ encodeURIComponent(sex) + "&sexPref="+ encodeURIComponent(sexPref), true);
         xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
         xhr.onreadystatechange = () => updateMatches(xhr);
         xhr.send();
