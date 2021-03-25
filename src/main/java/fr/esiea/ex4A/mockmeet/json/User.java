@@ -24,6 +24,10 @@ public class User {
         this.userSexPref = userSexPref;
     }
     
+    public Match toMatch(){
+        return new Match(userName, userTweeter);
+    }
+    
     @Override
     public String toString() {
         return "User{" +
