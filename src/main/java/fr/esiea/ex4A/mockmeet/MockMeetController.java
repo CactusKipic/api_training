@@ -33,7 +33,7 @@ public class MockMeetController {
     
     @GetMapping(path = "api/matches", produces = MediaType.APPLICATION_JSON_VALUE)
     List<Match> getMatches(@RequestParam("userName") String name, @RequestParam("userCountry") String country,
-                           @RequestParam("sex") String sexe,@RequestParam("sexPref") String sexePref){
+                           @RequestParam(value = "sex", defaultValue = "null") String sexe,@RequestParam(value = "sexPref", defaultValue = "null") String sexePref){
         if(!apiService.userAlreadyRegistered(name, country))
             return new MatchesResponse();
         if(!sexe.equals("null") && !sexePref.equals("null"))
