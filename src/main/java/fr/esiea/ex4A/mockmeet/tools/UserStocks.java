@@ -49,6 +49,10 @@ public class UserStocks {
         return nameToAUser.get(name.concat("_").concat(contry_id));
     }
     
+    public User getFirstUserOfUserAgify(UserAgify userAgify){
+        return nameToUser.get(userAgify).get(0);
+    }
+    
     // Check if this user has already a corresponding UserAgify in cache
     public boolean userAlreadyExist(User user){
         return nameToAUser.containsKey(makeUserID(user));

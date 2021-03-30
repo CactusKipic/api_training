@@ -26,7 +26,8 @@ class ApiServiceTest {
     @Order(1)
     @CsvSource({
         "Hugo,FR,brig@esiea.fr,BriTwtr,F,M,0",
-        "Manon,FR,renaud@virus.debout,RenaudColere,M,F,1"
+        "Manon,FR,renaud@virus.debout,RenaudColere,M,F,1",
+        "Manon,FR,renaud@virus.deboutencore,RenaudColere2,M,F,1"
     })
     void apiService_ajout_test(String name, String country, String mail, String tweeter, String sex, String sexPref, int nbMatchs) {
         
@@ -42,11 +43,13 @@ class ApiServiceTest {
     @ParameterizedTest
     @Order(2)
     @CsvSource({
-        "Hugo,FR,brig@esiea.fr,BriTwtr,F,M,1",
-        "Manon,FR,renaud@virus.debout,RenaudColere,M,F,1"
+        "Hugo,FR,brig@esiea.fr,BriTwtr,F,M,2",
+        "Manon,FR,renaud@virus.debout,RenaudColere,M,F,1",
+        "Manon,FR,renaud@virus.deboutencore,RenaudColere2,M,F,1"
     })
     void apiService_match_test(String name, String country, String mail, String tweeter, String sex, String sexPref, int nbMatchs) {
         
+        assertTrue(api.userAlreadyRegistered(name, country));
         assertEquals(api.getMatchsFor(name, country, Sexes.valueOf(sex), Sexes.valueOf(sexPref)).size(), nbMatchs);
         
     }
@@ -55,10 +58,12 @@ class ApiServiceTest {
     @Order(3)
     @CsvSource({
         "Hugo,FR,brig@esiea.fr,BriTwtr,F,M,2",
-        "Manon,FR,renaud@virus.debout,RenaudColere,M,F,2"
+        "Manon,FR,renaud@virus.debout,RenaudColere,M,F,1",
+        "Manon,FR,renaud@virus.deboutencore,RenaudColere2,M,F,1"
     })
     void apiService_match_noPref_test(String name, String country, String mail, String tweeter, String sex, String sexPref, int nbMatchs) {
         
+        assertTrue(api.userAlreadyRegistered(name, country));
         assertEquals(api.getMatchsFor(name, country).size(), nbMatchs);
         
     }

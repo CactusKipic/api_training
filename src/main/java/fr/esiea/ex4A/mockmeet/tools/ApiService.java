@@ -52,15 +52,8 @@ public class ApiService {
     }
     
     public MatchesResponse getMatchsFor(String name, String country_id){
-        int age = userStocks.getUserAgify(name, country_id).age;
-        MatchesResponse res = new MatchesResponse(getMatches(age));
-        for(int i = 1; i < AGE_SEARCH_LIMIT; i++){
-            res.addAll(getMatches(age + i));
-            res.addAll(getMatches(age - i));
-            if(res.size() >= MATCHES_SEARCH_LIMIT)
-                break;
-        }
-        return res;
+        User user = userStocks.getFirstUserOfUserAgify(userStocks.getUserAgify(name, country_id));
+        return getMatchsFor(user.userName, user.userCountry, user.userSex, user.userSexPref);
     }
     
     private List<Match> getMatches(int age, Sexes sexe, Sexes sexePref){
@@ -69,14 +62,6 @@ public class ApiService {
             users.addAll(users2);
             return users;
         }).get().stream().filter(u -> (u.userSex.equals(sexePref) && u.userSexPref.equals(sexe))).map(User::toMatch).collect(Collectors.toList());
-    }
-    
-    private List<Match> getMatches(int age){
-        List<List<User>> usersOfAge = userStocks.getUsersOfAge(age);
-        return usersOfAge == null ? new ArrayList<>() : usersOfAge.stream().reduce((users, users2) -> {
-            users.addAll(users2);
-            return users;
-        }).get().stream().map(User::toMatch).collect(Collectors.toList());
     }
     
 }
